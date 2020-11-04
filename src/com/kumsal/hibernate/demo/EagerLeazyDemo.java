@@ -28,21 +28,12 @@ public class EagerLeazyDemo {
 		try {
 			
 			int theId=1;
+
 			Instructor tempinstructor=session.get(Instructor.class,1);
+				
+			System.out.println("Instructor "+tempinstructor);
 			
-			Course course1=new Course("Air guitar");
-			Course course2=new Course("Hibernate");
-			Course course3=new Course("Spring boot");
-			Course course4=new Course("Sample java");
-			List<Course> courses=new ArrayList<Course>();
-			courses.add(course1);
-			courses.add(course4);
-			courses.add(course3);
-			courses.add(course2);
-			
-			session.save(course4);
-			session.save(course3);
-			session.save(course2);
+			System.out.println("Course "+tempinstructor.getCourse());
 			
 			session.getTransaction().commit();
 			session.close();

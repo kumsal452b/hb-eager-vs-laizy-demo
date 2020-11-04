@@ -35,11 +35,11 @@ public class Instructor {
 	@Column(name="email")
 	private String email;
 	
-	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="instructor_detail_id")
 	private InstructorDetail instructorDetail;
 	
-	@OneToMany(mappedBy="instructor",cascade={CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="instructor",cascade={CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private List<Course> course;
 	
 	public Instructor() {

@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import com.kumsal.demo.entity.Course;
 import com.kumsal.demo.entity.Instructor;
@@ -29,14 +30,18 @@ public class EagerLeazyDemo {
 			
 			int theId=1;
 
-			Instructor tempinstructor=session.get(Instructor.class,1);
-				
+			Query<Instructor>  query=session.createQuery("select i from Instructor i "
+					+ "JOIN FETCH i.course "
+					+ "where i.id=:theInstructorId",Instructor.class);
+			query.setParameter("theInstructorId", theId);
+			
+			Instructor tempinstructor=query.getSingleResult();
+			
 			System.out.println("Instructor "+tempinstructor);
 			
 			
 			session.getTransaction().commit();
 			session.close();
-			System.out.println("Course "+tempinstructor.getCourse());
 			System.out.println("Done succesfuly");
 		} finally {
 			// TODO: handle finally clause

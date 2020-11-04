@@ -33,11 +33,11 @@ public class EagerLeazyDemo {
 				
 			System.out.println("Instructor "+tempinstructor);
 			
-			System.out.println("Course "+tempinstructor.getCourse());
 			
 			session.getTransaction().commit();
 			session.close();
-			System.out.println("Saved succesfuly");
+			System.out.println("Course "+tempinstructor.getCourse());
+			System.out.println("Done succesfuly");
 		} finally {
 			// TODO: handle finally clause
 		}
